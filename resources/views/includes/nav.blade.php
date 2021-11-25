@@ -12,7 +12,7 @@
                         <a class="nav-link" href="{{ route('home') }}">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
+                        <a class="nav-link" href="{{ route('contacts.index') }}">Контакты</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Номера</a>
