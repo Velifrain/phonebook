@@ -16,5 +16,8 @@
 - docker-compose up -d --build
 - docker-compose exec php composer install
 - docker-compose exec php bash
-- php artisan migrate
-- php artisan db:seed
+- php artisan migrate создать таблицы в бд
+- php artisan db:seed добавить случайные данные в таблицу
+
+http://localhost:8000
+навигация по контактам и номерам
