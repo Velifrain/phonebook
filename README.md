@@ -17,7 +17,9 @@
 - docker-compose exec php composer install
 - docker-compose exec php bash
 - php artisan migrate создать таблицы в бд
-- php artisan db:seed добавить случайные данные в таблицу
+- php artisan db:seed добавить случайные данные в таблицу(если не выполнять, то данные добавляются в ручную)
 
-http://localhost:8000
+http://localhost:8086
 навигация по контактам и номерам
+- создать контакт
+- добавить телефонный номер
