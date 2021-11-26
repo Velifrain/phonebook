@@ -12,6 +12,10 @@ class PhoneNumber extends Model
 {
     use HasFactory;
 
+    protected $table = 'phone_numbers';
+
+    protected $primaryKey = 'id';
+
     /**
      * @var string[]
      */
@@ -24,6 +28,6 @@ class PhoneNumber extends Model
      */
     public function contact(): BelongsTo
     {
-        return $this->belongsTo(Contact::class, 'contact_id', 'id');
+        return $this->belongsTo(Contact::class);
     }
 }

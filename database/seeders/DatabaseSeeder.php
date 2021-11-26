@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Contact::factory(15)->create();
-        PhoneNumber::factory(15)->create();
+        Contact::factory(10)->create();
+        PhoneNumber::factory(10)->create();
 
         // \App\Models\User::factory(10)->create();
     }
