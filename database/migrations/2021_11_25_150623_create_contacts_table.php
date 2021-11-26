@@ -20,6 +20,17 @@ class CreateContactsTable extends Migration
             $table->string('address', 150);
             $table->timestamps();
         });
+
+        Schema::create('phone_numbers', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('contact_id')->nullable();
+            $table->string('phone_number');
+            $table->timestamps();
+            $table->foreign('contact_id')
+                ->references('id')
+                ->on('contacts')
+                ->onDelete('cascade');
+        });
     }
 
     /**

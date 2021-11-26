@@ -20,20 +20,22 @@
                 <th scope="col">Фамилия</th>
                 <th scope="col">Адресс</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             @foreach($contacts as $contact)
                 <tr>
-                    <td>{{ $contact->name }}</td>
+                    <td><a href="{{ route('contact.show', $contact->id) }}">{{ $contact->name }}</a></td>
                     <td>{{ $contact->surname }}</td>
                     <td>{{ $contact->address }}</td>
+                    <td>{{ $contact->phoneNumbers->implode('phone_number', ', ') }}</td>
                     <td>
                         <form action="{{ route('contact.destroy',$contact->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">
-                                Удалить
+                                Удалить Контакт
                             </button>
                         </form>
                     </td>

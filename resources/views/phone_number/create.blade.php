@@ -11,10 +11,24 @@
                 @csrf
                 <div class="form-group mb-2">
                     <label for="validationNumber">Номер телефона</label>
-                    <input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="validationNumber"
+                    <input type="text" name="phone_number"
+                           class="form-control @error('phone_number') is-invalid @enderror" id="validationNumber"
                            placeholder="Введите номер телефона">
                     @error('phone_number')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group mb-2">
+                    <label for="validNumber">Контакты</label>
+                    <select class="form-control @error('contact_id') is-invalid @enderror"
+                            id="validNumber"
+                            name="contact_id">
+                        @foreach($cons as $con)
+                            <option value="{{ $con->id }}">{{ $con->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('contact_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="d-grid gap-2">

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Models\PhoneNumber;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,6 +11,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use App\Http\Requests\PhoneNumberRequest;
+use Illuminate\Support\Facades\DB;
 
 class PhoneNumberController extends Controller
 {
@@ -27,9 +27,10 @@ class PhoneNumberController extends Controller
     /**
      * @return Application|Factory|View
      */
-    public function create(): View
+    public function create(PhoneNumber $numbers): View
     {
-        return view('phone_number.create');
+        $cons = DB::table('contacts')->get();
+        return view('phone_number.create', compact('cons', 'numbers'));
     }
 
     /**
@@ -38,13 +39,10 @@ class PhoneNumberController extends Controller
      */
     public function store(PhoneNumberRequest $request): RedirectResponse
     {
-
         $pn = PhoneNumber::create($request->only(['phone_number']));
-        //dd($pn);
-        //dd($con = Contact::find(1)->phoneNumbers());
-        //$pn->contact()->attach($request->contact_id);
-
-        return redirect()->route('phone_number.index')->with('success', 'Номер успешно добавлен');
+        $pn->contact()->associate((int)$request->contact_id);
+        $pn->save();
+        return redirect()->route('phone-number.index')->with('success', 'Номер успешно добавлен');
     }
 
     /**
@@ -60,7 +58,7 @@ class PhoneNumberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PhoneNumber  $phoneNumber
+     * @param  PhoneNumber  $phoneNumber
      */
     public function edit(PhoneNumber $phoneNumber): void
     {
@@ -70,8 +68,8 @@ class PhoneNumberController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PhoneNumber  $phoneNumber
+     * @param Request  $request
+     * @param PhoneNumber  $phoneNumber
      */
     public function update(Request $request, PhoneNumber $phoneNumber): void
     {
@@ -80,11 +78,11 @@ class PhoneNumberController extends Controller
 
     /**
      * @param PhoneNumber $phoneNumber
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy(PhoneNumber $phoneNumber): RedirectResponse
     {
         $phoneNumber->delete();
-        return redirect()->route('phone_number.index')->with('success', 'Номер успешно удален');
+        return redirect()->route('contact.index')->with('success', 'Номер успешно удален');
     }
 }
