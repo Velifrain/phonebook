@@ -1,35 +1,29 @@
 @extends('layouts.app')
 
-@section('title-block')Список контактов@endsection
+@section('title-block')Телефонные номера@endsection
 
 @section('content')
     <div class="container">
         <div class="row mb-3">
-            <div class="col-lg-12 margin-tb">
-                <h1>Контакты</h1>
-                <a href="{{ route('contacts.create') }}" class="btn btn-success mt-5"
-                   role="button">Добавить контакт</a>
+            <div class="col-md-12 mt-5">
+                <h3>Телефонные номера</h3>
+                <a href="{{ route('phone-number.create') }}" class="btn btn-success mt-5">Добавить номер</a>
             </div>
         </div>
-
         @include('includes.flash-message')
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Имя</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Адресс</th>
+                <th scope="col">Номер</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            @foreach($contacts as $contact)
+            @foreach($phoneNumber as $num)
                 <tr>
-                    <td>{{ $contact->name }}</td>
-                    <td>{{ $contact->surname }}</td>
-                    <td>{{ $contact->address }}</td>
+                    <td>{{ $num->phone_number }}</td>
                     <td>
-                        <form action="{{ route('contacts.destroy',$contact->id) }}" method="post">
+                        <form action="{{ route('phone-number.destroy',$num->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">
@@ -41,6 +35,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="float-right justify-content-center">
+            {!! $phoneNumber->links() !!}
+        </div>
     </div>
-    {!! $contacts->links() !!}
+
 @endsection

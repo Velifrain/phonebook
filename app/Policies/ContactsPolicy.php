@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Contacts;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class ContactsPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contacts  $contacts
+     * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Contacts $contacts)
+    public function view(User $user, Contact $contacts)
     {
         //
     }
@@ -48,10 +48,10 @@ class ContactsPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contacts  $contacts
+     * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Contacts $contacts)
+    public function update(User $user, Contact $contacts)
     {
         //
     }
@@ -60,10 +60,10 @@ class ContactsPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contacts  $contacts
+     * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Contacts $contacts)
+    public function delete(User $user, Contact $contacts)
     {
         //
     }
@@ -72,10 +72,10 @@ class ContactsPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contacts  $contacts
+     * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Contacts $contacts)
+    public function restore(User $user, Contact $contacts)
     {
         //
     }
@@ -84,10 +84,10 @@ class ContactsPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contacts  $contacts
+     * @param  \App\Models\Contact  $contacts
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Contacts $contacts)
+    public function forceDelete(User $user, Contact $contacts)
     {
         //
     }

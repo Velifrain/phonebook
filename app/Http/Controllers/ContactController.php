@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactsRequest;
-use App\Models\Contacts;
+use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
     /**
      * @return Application|Factory|View
      */
     public function index()
     {
-        $contacts = Contacts::latest()->paginate(5);
-        return view('contacts.index', compact('contacts'));
+        $contacts = Contact::latest()->paginate(5);
+        return view('contact.index', compact('contacts'));
     }
 
     /**
@@ -28,17 +28,17 @@ class ContactsController extends Controller
      */
     public function create(): View
     {
-        return view('contacts.create');
+        return view('contact.create');
     }
 
     /**
-     * @param ContactsRequest $request
+     * @param ContactRequest $request
      * @return RedirectResponse
      */
-    public function store(ContactsRequest $request)
+    public function store(ContactRequest $request)
     {
-        Contacts::create($request->only(['name', 'surname', 'address']));
-        return redirect()->route('contacts.index')->with('success', 'Успешно создан контакт');
+        Contact::create($request->only(['name', 'surname', 'address']));
+        return redirect()->route('contact.index')->with('success', 'Успешно создан контакт');
     }
 
     /**
@@ -62,9 +62,9 @@ class ContactsController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $con = Contacts::find($id);
+        $con = Contact::find($id);
         $con->delete();
-        return redirect()->route('contacts.index')
+        return redirect()->route('contact.index')
                          ->with('success', 'Контакт удален');
     }
 }
