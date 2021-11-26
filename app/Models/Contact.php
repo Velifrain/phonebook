@@ -6,8 +6,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Contacts extends Model
+class Contact extends Model
 {
     use HasFactory;
 
@@ -19,5 +21,13 @@ class Contacts extends Model
         'surname',
         'address',
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function phoneNumbers(): HasMany
+    {
+        return $this->hasMany(PhoneNumber::class);
+    }
 
 }

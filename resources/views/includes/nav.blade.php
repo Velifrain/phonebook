@@ -12,10 +12,10 @@
                         <a class="nav-link" href="{{ route('home') }}">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contacts.index') }}">Контакты</a>
+                        <a class="nav-link" href="{{ route('contact.index') }}">Контакты</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Номера</a>
+                        <a class="nav-link" href="{{ route('phone-number.index') }}">Номера</a>
                     </li>
                 </ul>
             </div>

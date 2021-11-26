@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContactsRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
     /**
      * @return bool
